@@ -1,12 +1,13 @@
-const express = require("express");
-const morgan = require("morgan");
-const dotenv = require("dotenv");
-const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
-const mongoSanitize = require("express-mongo-sanitize");
-const xss = require("xss-clean");
-const AppError = require("./utils/appError");
-const globalErrorHandler = require("./controller/errorController");
+import express from "express";
+import morgan from "morgan";
+import dotenv from "dotenv";
+
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import mongoSanitize from "express-mongo-sanitize";
+import xss from "xss-clean";
+import AppError from "./utils/appError.js";
+import globalErrorHandler from "./controller/errorController.js";
 dotenv.config();
 
 const app = express();
@@ -43,4 +44,4 @@ app.all("*", (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-module.exports = app;
+export default app;

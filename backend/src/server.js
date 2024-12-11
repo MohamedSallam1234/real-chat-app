@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const { resolve } = require("node:path");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT EXCEPTION! Shutting down...");
@@ -8,10 +7,11 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: resolve(__dirname, ".env") });
-const app = require("./app");
+dotenv.config({
+  path: "C:\\Users\\mohamed\\workspace\\real-chat-app\\backend\\.env",
+});
 
-console.log(process.env.DATABASE, process.env.DATABASE_PASSWORD);
+import app from "./app.js";
 
 const DB = process.env.DATABASE.replace(
   "<password>",
