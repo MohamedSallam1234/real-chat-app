@@ -8,6 +8,7 @@ import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
 import AppError from "./utils/appError.js";
 import globalErrorHandler from "./controller/errorController.js";
+import userRoute from "./routes/userRoute.js";
 dotenv.config();
 
 const app = express();
@@ -32,11 +33,7 @@ app.use(mongoSanitize());
 
 app.use(xss());
 
-console.log(process.env.PORT);
-
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+app.use("/api/v1/auth", userRoute);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));

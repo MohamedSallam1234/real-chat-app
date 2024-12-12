@@ -7,10 +7,9 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-dotenv.config({
-  path: "C:\\Users\\mohamed\\workspace\\real-chat-app\\backend\\.env",
-});
+dotenv.config({});
 
+console.log(`Application is running in ${process.env.NODE_ENV} mode.`);
 import app from "./app.js";
 
 const DB = process.env.DATABASE.replace(
