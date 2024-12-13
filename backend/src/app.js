@@ -9,6 +9,7 @@ import xss from "xss-clean";
 import AppError from "./utils/appError.js";
 import globalErrorHandler from "./controller/errorController.js";
 import userRoute from "./routes/userRoute.js";
+import messageRoute from "./routes/messageRoute.js";
 dotenv.config();
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 app.use("/api/v1/auth", userRoute);
+app.use("/api/v1/message", messageRoute);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
